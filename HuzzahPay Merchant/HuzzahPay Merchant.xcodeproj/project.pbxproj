@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,14 @@
 		EE93BE4B24EB731E007445FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE93BE4924EB731E007445FA /* Main.storyboard */; };
 		EE93BE4D24EB7321007445FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE93BE4C24EB7321007445FA /* Assets.xcassets */; };
 		EE93BE5024EB7321007445FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE93BE4E24EB7321007445FA /* LaunchScreen.storyboard */; };
+		EED3B0F524EC822C0065C9D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EED3B0F424EC822C0065C9D1 /* GoogleService-Info.plist */; };
+		F0223D106D998726A2C985FB /* Pods_HuzzahPay_Merchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F4846116C83B0E759D7933 /* Pods_HuzzahPay_Merchant.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		094EC045D678EB18E14A534C /* Pods-HuzzahPay Merchant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuzzahPay Merchant.release.xcconfig"; path = "Target Support Files/Pods-HuzzahPay Merchant/Pods-HuzzahPay Merchant.release.xcconfig"; sourceTree = "<group>"; };
+		51F4846116C83B0E759D7933 /* Pods_HuzzahPay_Merchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HuzzahPay_Merchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		705248F5FC3A73893B610CF2 /* Pods-HuzzahPay Merchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuzzahPay Merchant.debug.xcconfig"; path = "Target Support Files/Pods-HuzzahPay Merchant/Pods-HuzzahPay Merchant.debug.xcconfig"; sourceTree = "<group>"; };
 		EE93BE4024EB731E007445FA /* HuzzahPay Merchant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HuzzahPay Merchant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE93BE4324EB731E007445FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE93BE4524EB731E007445FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		EE93BE4C24EB7321007445FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE93BE4F24EB7321007445FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE93BE5124EB7321007445FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EED3B0F424EC822C0065C9D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,79 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0223D106D998726A2C985FB /* Pods_HuzzahPay_Merchant.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A8D8F076CF9B6A747F253DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				705248F5FC3A73893B610CF2 /* Pods-HuzzahPay Merchant.debug.xcconfig */,
+				094EC045D678EB18E14A534C /* Pods-HuzzahPay Merchant.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DCF5905C9320D09041C37E24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				51F4846116C83B0E759D7933 /* Pods_HuzzahPay_Merchant.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE8E337E24EC834D00B9E3E8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE93BE4724EB731E007445FA /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EE8E337F24EC835C00B9E3E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE93BE4924EB731E007445FA /* Main.storyboard */,
+				EE93BE4C24EB7321007445FA /* Assets.xcassets */,
+				EE93BE4E24EB7321007445FA /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE8E338024EC836100B9E3E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE8E338124EC836500B9E3E8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		EE8E338224EC836800B9E3E8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EED3B0F424EC822C0065C9D1 /* GoogleService-Info.plist */,
+				EE93BE4324EB731E007445FA /* AppDelegate.swift */,
+				EE93BE4524EB731E007445FA /* SceneDelegate.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		EE93BE3724EB731E007445FA = {
 			isa = PBXGroup;
 			children = (
 				EE93BE4224EB731E007445FA /* HuzzahPay Merchant */,
 				EE93BE4124EB731E007445FA /* Products */,
+				0A8D8F076CF9B6A747F253DE /* Pods */,
+				DCF5905C9320D09041C37E24 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +124,11 @@
 		EE93BE4224EB731E007445FA /* HuzzahPay Merchant */ = {
 			isa = PBXGroup;
 			children = (
-				EE93BE4324EB731E007445FA /* AppDelegate.swift */,
-				EE93BE4524EB731E007445FA /* SceneDelegate.swift */,
-				EE93BE4724EB731E007445FA /* ViewController.swift */,
-				EE93BE4924EB731E007445FA /* Main.storyboard */,
-				EE93BE4C24EB7321007445FA /* Assets.xcassets */,
-				EE93BE4E24EB7321007445FA /* LaunchScreen.storyboard */,
+				EE8E338224EC836800B9E3E8 /* Utils */,
+				EE8E338124EC836500B9E3E8 /* API */,
+				EE8E338024EC836100B9E3E8 /* Model */,
+				EE8E337F24EC835C00B9E3E8 /* View */,
+				EE8E337E24EC834D00B9E3E8 /* Controller */,
 				EE93BE5124EB7321007445FA /* Info.plist */,
 			);
 			path = "HuzzahPay Merchant";
@@ -74,9 +141,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE93BE5424EB7321007445FA /* Build configuration list for PBXNativeTarget "HuzzahPay Merchant" */;
 			buildPhases = (
+				3C0109B8583F23BD34E2D7D9 /* [CP] Check Pods Manifest.lock */,
 				EE93BE3C24EB731E007445FA /* Sources */,
 				EE93BE3D24EB731E007445FA /* Frameworks */,
 				EE93BE3E24EB731E007445FA /* Resources */,
+				E04F171DA0019A942253C0EE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,12 +195,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE93BE5024EB7321007445FA /* LaunchScreen.storyboard in Resources */,
+				EED3B0F524EC822C0065C9D1 /* GoogleService-Info.plist in Resources */,
 				EE93BE4D24EB7321007445FA /* Assets.xcassets in Resources */,
 				EE93BE4B24EB731E007445FA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C0109B8583F23BD34E2D7D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HuzzahPay Merchant-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E04F171DA0019A942253C0EE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HuzzahPay Merchant/Pods-HuzzahPay Merchant-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HuzzahPay Merchant/Pods-HuzzahPay Merchant-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HuzzahPay Merchant/Pods-HuzzahPay Merchant-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EE93BE3C24EB731E007445FA /* Sources */ = {
@@ -282,6 +394,7 @@
 		};
 		EE93BE5524EB7321007445FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 705248F5FC3A73893B610CF2 /* Pods-HuzzahPay Merchant.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +412,7 @@
 		};
 		EE93BE5624EB7321007445FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 094EC045D678EB18E14A534C /* Pods-HuzzahPay Merchant.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

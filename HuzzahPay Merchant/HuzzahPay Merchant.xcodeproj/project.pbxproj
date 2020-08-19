@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EE03D3D824EC939700910B09 /* flama-cufonfonts in Resources */ = {isa = PBXBuildFile; fileRef = EE03D3D724EC939700910B09 /* flama-cufonfonts */; };
+		EE3CABFB24EDAF8000476913 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3CABFA24EDAF8000476913 /* Utilities.swift */; };
 		EE93BE4424EB731E007445FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93BE4324EB731E007445FA /* AppDelegate.swift */; };
 		EE93BE4624EB731E007445FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93BE4524EB731E007445FA /* SceneDelegate.swift */; };
 		EE93BE4B24EB731E007445FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE93BE4924EB731E007445FA /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		51F4846116C83B0E759D7933 /* Pods_HuzzahPay_Merchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HuzzahPay_Merchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		705248F5FC3A73893B610CF2 /* Pods-HuzzahPay Merchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuzzahPay Merchant.debug.xcconfig"; path = "Target Support Files/Pods-HuzzahPay Merchant/Pods-HuzzahPay Merchant.debug.xcconfig"; sourceTree = "<group>"; };
 		EE03D3D724EC939700910B09 /* flama-cufonfonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "flama-cufonfonts"; sourceTree = "<group>"; };
+		EE3CABFA24EDAF8000476913 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		EE93BE4024EB731E007445FA /* HuzzahPay Merchant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HuzzahPay Merchant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE93BE4324EB731E007445FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE93BE4524EB731E007445FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				EEAA337A24EC863A007274A1 /* Extensions.swift */,
+				EE3CABFA24EDAF8000476913 /* Utilities.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			files = (
 				EE93BE4424EB731E007445FA /* AppDelegate.swift in Sources */,
 				EE93BE4624EB731E007445FA /* SceneDelegate.swift in Sources */,
+				EE3CABFB24EDAF8000476913 /* Utilities.swift in Sources */,
 				EEAA338224EC8CAB007274A1 /* PaymentController.swift in Sources */,
 				EEAA337B24EC863A007274A1 /* Extensions.swift in Sources */,
 				EEAA338024EC8B5B007274A1 /* RegistrationController.swift in Sources */,

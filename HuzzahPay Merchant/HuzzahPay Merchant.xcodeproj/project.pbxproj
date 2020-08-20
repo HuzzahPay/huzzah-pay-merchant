@@ -19,6 +19,10 @@
 		EEAA338024EC8B5B007274A1 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA337F24EC8B5B007274A1 /* RegistrationController.swift */; };
 		EEAA338224EC8CAB007274A1 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA338124EC8CAB007274A1 /* PaymentController.swift */; };
 		EED3B0F524EC822C0065C9D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EED3B0F424EC822C0065C9D1 /* GoogleService-Info.plist */; };
+		EEF87E2824EEF18D001A8EBB /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF87E2724EEF18D001A8EBB /* AuthService.swift */; };
+		EEF87E2A24EEF379001A8EBB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF87E2924EEF379001A8EBB /* Constants.swift */; };
+		EEF87E2C24EEFD44001A8EBB /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF87E2B24EEFD44001A8EBB /* Merchant.swift */; };
+		EEF87E2E24EEFE3F001A8EBB /* MerchantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF87E2D24EEFE3F001A8EBB /* MerchantService.swift */; };
 		F0223D106D998726A2C985FB /* Pods_HuzzahPay_Merchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F4846116C83B0E759D7933 /* Pods_HuzzahPay_Merchant.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +44,10 @@
 		EEAA337F24EC8B5B007274A1 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		EEAA338124EC8CAB007274A1 /* PaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		EED3B0F424EC822C0065C9D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EEF87E2724EEF18D001A8EBB /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		EEF87E2924EEF379001A8EBB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EEF87E2B24EEFD44001A8EBB /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
+		EEF87E2D24EEFE3F001A8EBB /* MerchantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,7 @@
 		EE8E338024EC836100B9E3E8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EEF87E2B24EEFD44001A8EBB /* Merchant.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -109,6 +118,8 @@
 		EE8E338124EC836500B9E3E8 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				EEF87E2724EEF18D001A8EBB /* AuthService.swift */,
+				EEF87E2D24EEFE3F001A8EBB /* MerchantService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -160,6 +171,7 @@
 			children = (
 				EEAA337A24EC863A007274A1 /* Extensions.swift */,
 				EE3CABFA24EDAF8000476913 /* Utilities.swift */,
+				EEF87E2924EEF379001A8EBB /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -291,12 +303,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE93BE4424EB731E007445FA /* AppDelegate.swift in Sources */,
+				EEF87E2E24EEFE3F001A8EBB /* MerchantService.swift in Sources */,
+				EEF87E2824EEF18D001A8EBB /* AuthService.swift in Sources */,
 				EE93BE4624EB731E007445FA /* SceneDelegate.swift in Sources */,
 				EE3CABFB24EDAF8000476913 /* Utilities.swift in Sources */,
 				EEAA338224EC8CAB007274A1 /* PaymentController.swift in Sources */,
 				EEAA337B24EC863A007274A1 /* Extensions.swift in Sources */,
 				EEAA338024EC8B5B007274A1 /* RegistrationController.swift in Sources */,
 				EEAA337E24EC8B3A007274A1 /* LoginController.swift in Sources */,
+				EEF87E2A24EEF379001A8EBB /* Constants.swift in Sources */,
+				EEF87E2C24EEFD44001A8EBB /* Merchant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

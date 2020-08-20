@@ -23,7 +23,7 @@ class RegistrationController: UIViewController {
     private lazy var shopContainerView: UIView = {
         var view = UIView()
         if let image = UIImage(systemName: "cart.fill")?.withTintColor(.huzzahDarkPink, renderingMode: .alwaysOriginal) {
-            view = Utilities().inputContainerView(withImage: image, textField: shopTextField)
+            view = Utilities().inputContainerView(withImage: image, textField: storeTextField)
         }
         return view
     }()
@@ -52,7 +52,7 @@ class RegistrationController: UIViewController {
         return view
     }()
     
-    private let shopTextField: UITextField = {
+    private let storeTextField: UITextField = {
         let tf = Utilities().textField(withPlaceholder: "Store Name")
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
@@ -99,6 +99,15 @@ class RegistrationController: UIViewController {
         button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         return button
     }()
+    
+    private lazy var authStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [shopContainerView, emailContainerView,
+                                                   passwordContainerView, confirmPasswordContainerView, registerButton])
+        stack.axis = .vertical
+        stack.spacing = 20
+        stack.distribution = .fillEqually
+        return stack
+    }()
 
     private let dontHaveAccountButton: UIButton = {
         let button = Utilities().attributedButton("Already have an account?", " Log in")
@@ -111,10 +120,27 @@ class RegistrationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(logoImageView)
+        view.addSubview(authStack)
+        view.addSubview(dontHaveAccountButton)
+
         configureNavigationBar()
         configureTextFieldDelegates()
         configureUI()
         configureElements()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 50)
+        logoImageView.setDimensions(width: view.frame.width/2, height: view.frame.height/5)
+         
+        authStack.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
+                         paddingTop: 20, paddingLeft: 150, paddingRight: 150)
+        
+        dontHaveAccountButton.centerX(inView: view)
+        dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -124,7 +150,25 @@ class RegistrationController: UIViewController {
     // MARK: - Selectors
     
     @objc func handleRegister() {
-        print("DEBUG: did tap register")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let store = storeTextField.text else { return }
+        guard let confirmPassword = confirmPasswordTextField.text else { return }
+        
+        guard password == confirmPassword else { return }
+        
+        let credentials = AuthCredentials(email: email, password: password, storeName: store)
+        
+        AuthService.shared.registerMerchant(credentials: credentials, completion: { [weak self] error, ref in
+            if let error = error {
+                print("DEBUG: Error logging in with error: \(error.localizedDescription)")
+                return
+            }
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+            guard let controller = window.rootViewController as? PaymentController else { return }
+            controller.authenticateUserAndConfigureUI()
+            self?.dismiss(animated: true, completion: nil)
+        })
     }
     
     @objc func handleShowLogin() {
@@ -132,14 +176,14 @@ class RegistrationController: UIViewController {
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        shopTextField.endEditing(true)
+        storeTextField.endEditing(true)
         emailTextField.endEditing(true)
         passwordTextField.endEditing(true)
         confirmPasswordTextField.endEditing(true)
         
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        shopTextField.resignFirstResponder()
+        storeTextField.resignFirstResponder()
         confirmPasswordTextField.resignFirstResponder()
     }
     
@@ -163,34 +207,17 @@ class RegistrationController: UIViewController {
     
     func configureUI() {
         view.backgroundColor = .huzzahDark
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        view.addSubview(logoImageView)
-        logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 50)
-        logoImageView.setDimensions(width: view.frame.width/2, height: view.frame.height/5)
-        
-        let stack = UIStackView(arrangedSubviews: [shopContainerView, emailContainerView,
-                                                   passwordContainerView, confirmPasswordContainerView, registerButton])
-        stack.axis = .vertical
-        stack.spacing = 20
-        stack.distribution = .fillEqually
-        
-        view.addSubview(stack)
-        stack.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
-                     paddingTop: 20, paddingLeft: 150, paddingRight: 150)
-        
-        view.addSubview(dontHaveAccountButton)
-        dontHaveAccountButton.centerX(inView: view)
-        dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
     }
     
     private func configureElements() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func configureTextFieldDelegates() {
@@ -203,7 +230,7 @@ class RegistrationController: UIViewController {
 
 extension RegistrationController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if (textField == shopTextField) {
+        if (textField == storeTextField) {
             emailTextField.becomeFirstResponder()
         } else if (textField == emailTextField) {
             passwordTextField.becomeFirstResponder()

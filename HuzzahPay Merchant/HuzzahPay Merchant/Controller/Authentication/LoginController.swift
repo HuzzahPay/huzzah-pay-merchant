@@ -65,6 +65,14 @@ class LoginController: UIViewController {
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
+    
+    private lazy var authStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
+        stack.axis = .vertical
+        stack.spacing = 20
+        stack.distribution = .fillEqually
+        return stack
+    }()
 
     private let dontHaveAccountButton: UIButton = {
         let button = Utilities().attributedButton("Don't have an account?", " Register your store now!")
@@ -77,10 +85,27 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(logoImageView)
+        view.addSubview(authStack)
+        view.addSubview(dontHaveAccountButton)
+        
         configureNavigationBar()
         configureTextFieldDelegates()
         configureUI()
         configureElements()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 50)
+        logoImageView.setDimensions(width: view.frame.width/2, height: view.frame.height/5)
+        
+        authStack.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
+                         paddingTop: 20, paddingLeft: 150, paddingRight: 150)
+        
+        dontHaveAccountButton.centerX(inView: view)
+        dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -90,7 +115,19 @@ class LoginController: UIViewController {
     // MARK: - Selectors
     
     @objc func handleLogin() {
-        print("DEBUG: did tap login")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        AuthService.shared.logUserIn(withEmail: email, password: password, completion: { [weak self] result, error in
+            if let error = error {
+                print("DEBUG: Error logging in with error: \(error.localizedDescription)")
+                return
+            }
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+            guard let controller = window.rootViewController as? PaymentController else { return }
+            controller.authenticateUserAndConfigureUI()
+            self?.dismiss(animated: true, completion: nil)
+        })
     }
     
     @objc func handleShowSignUp() {
@@ -126,31 +163,14 @@ class LoginController: UIViewController {
     
     func configureUI() {
         view.backgroundColor = .huzzahDark
-        
+    }
+    
+    private func configureElements() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        view.addSubview(logoImageView)
-        logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 50)
-        logoImageView.setDimensions(width: view.frame.width/2, height: view.frame.height/5)
-        
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
-        stack.axis = .vertical
-        stack.spacing = 20
-        stack.distribution = .fillEqually
-        
-        view.addSubview(stack)
-        stack.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
-                     paddingTop: 20, paddingLeft: 150, paddingRight: 150)
-        
-        view.addSubview(dontHaveAccountButton)
-        dontHaveAccountButton.centerX(inView: view)
-        dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
-    }
-    
-    private func configureElements() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)

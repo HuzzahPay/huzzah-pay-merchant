@@ -16,7 +16,7 @@ class LoginController: UIViewController {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.backgroundColor = .huzzahDarkPink
+        iv.image = UIImage(named: "logo")?.withRenderingMode(.alwaysOriginal)
         return iv
     }()
     
@@ -99,7 +99,7 @@ class LoginController: UIViewController {
         super.viewDidLayoutSubviews()
         
         logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 50)
-        logoImageView.setDimensions(width: view.frame.width/2, height: view.frame.height/5)
+        logoImageView.setDimensions(width: view.frame.height/4, height: view.frame.height/4)
         
         authStack.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
                          paddingTop: 20, paddingLeft: 150, paddingRight: 150)
